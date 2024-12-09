@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:background="@drawable/fondo_degradado"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
+
+    <android.widget.Button
+        android:id="@+id/btnRegisterParts"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="250dp"
+        android:backgroundTint="@color/white"
+        android:text="Registrar Repuestos"
+        android:textColor="@color/red"
+        android:textStyle="bold" />
+
+    <android.widget.Button
+        android:id="@+id/btnlistParts"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRegisterParts"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:text="ver registros"
+        android:textColor="@color/red"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
