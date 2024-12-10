@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,154 +8,120 @@
     android:background="@drawable/fondo_degradado"
     tools:context=".OilActivity">
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="145dp"
         android:layout_height="145dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        app:srcCompat="@mipmap/ic_logo_foreground" />
+        app:srcCompat="@mipmap/ic_logo_foreground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp" />
 
+    <!-- Título -->
     <TextView
         android:id="@+id/tvOil"
-        android:layout_below="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
         android:text="Cambio de Aceite"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:textSize="16dp"/>
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-
-    <!--Fecha cambio de aceite-->
-    <TextView
-        android:id="@+id/tvOilChange"
-        android:layout_below="@+id/tvOil"
-        android:layout_width="wrap_content"
+    <!-- Sección de entrada de datos -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Fecha de Cambio"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
-    <EditText
-        android:id="@+id/etOilChange"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tvOilChange"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="date"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvOil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-<!--registro de kilometraje-->
-    <TextView
-        android:id="@+id/tvKilometer"
-        android:layout_below="@+id/etOilChange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="kilometraje"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de Cambio"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/etOilChange"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="date" />
 
-    <EditText
-        android:id="@+id/etKilometer"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tvKilometer"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="number"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kilometraje"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/etKilometer"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="number" />
 
-<!--Registro de marca de aceite-->
-    <TextView
-        android:id="@+id/tvOilBrand"
-        android:layout_below="@+id/etKilometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Marca del Aceite"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marca del Aceite"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/etOilBrand"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Aceite"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/etTypeOil"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_background"
+            />
+        <!-- Título -->
 
-    <EditText
-        android:id="@+id/etOilBrand"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tvOilBrand"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="number"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <!--Tipo de aceite-->
-    <TextView
-        android:id="@+id/tvTypeOil"
-        android:layout_below="@+id/etOilBrand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo de Aceite"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etTypeOil"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tvTypeOil"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="number"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <!--programar alarma-->
+    </LinearLayout>
     <TextView
         android:id="@+id/tvAlarm"
-        android:layout_below="@+id/etTypeOil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="Programar Alarma"
+        android:text="Cambio de Aceite"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:textSize="16dp"/>
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="350dp" />
 
-    <TextView
-        android:id="@+id/tvNextOilChange"
-        android:layout_below="@+id/tvAlarm"
+    <!-- Botón o acción al final -->
+    <Button
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha de Cambio"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
-    <EditText
-        android:id="@+id/etNextOilChange"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tvNextOilChange"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="date"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-
-
-
-</RelativeLayout>
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
