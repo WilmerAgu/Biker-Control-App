@@ -16,11 +16,11 @@ public class OilModel {
 
     public OilModel(String id, Date oilChange, Double kilometer, String oilBrand, String typeOil, Date nextOilChange) {
         this.id = id;
-        OilChange = oilChange;
+        this.OilChange = oilChange;
         this.kilometer = kilometer;
         this.oilBrand = oilBrand;
         this.typeOil = typeOil;
-        NextOilChange = nextOilChange;
+        this.NextOilChange = nextOilChange;
     }
 
     public String getId() {

@@ -119,11 +119,11 @@ public class OilDao {
     // metodo para convertir iolModel aun Map<String, Object>
     private Map<String, Object> mapOilToData(OilModel oil) {
         Map<String, Object> oilData = new HashMap<>();
-        oilData.put("Cambio de Aceite", oil.getOilChange());
-        oilData.put("Klometros", oil.getKilometer());
-        oilData.put("Marca del Aceite", oil.getOilBrand());
-        oilData.put("Tipo de Aceite", oil.getOilBrand());
-        oilData.put("Proximo Cambio", oil.getNextOilChange());
+        oilData.put("oilChange", oil.getOilChange());
+        oilData.put("kilometer", oil.getKilometer());
+        oilData.put("oilBrand", oil.getOilBrand());
+        oilData.put("typeOil", oil.getTypeOil());
+        oilData.put("nextOilChange", oil.getNextOilChange());
         return oilData;
     }
 
