@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_degradado"
+    tools:context=".OilActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
+
+    <TextView
+        android:id="@+id/tvOil"
+        android:layout_below="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Cambio de Aceite"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16dp"/>
+
+
+    <!--Fecha cambio de aceite-->
+    <TextView
+        android:id="@+id/tvOilChange"
+        android:layout_below="@+id/tvOil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Cambio"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etOilChange"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvOilChange"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="date"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+<!--registro de kilometraje-->
+    <TextView
+        android:id="@+id/tvKilometer"
+        android:layout_below="@+id/etOilChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kilometraje"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etKilometer"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvKilometer"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+<!--Registro de marca de aceite-->
+    <TextView
+        android:id="@+id/tvOilBrand"
+        android:layout_below="@+id/etKilometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marca del Aceite"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etOilBrand"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvOilBrand"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <!--Tipo de aceite-->
+    <TextView
+        android:id="@+id/tvTypeOil"
+        android:layout_below="@+id/etOilBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Aceite"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etTypeOil"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvTypeOil"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <!--programar alarma-->
+    <TextView
+        android:id="@+id/tvAlarm"
+        android:layout_below="@+id/etTypeOil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Programar Alarma"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/tvNextOilChange"
+        android:layout_below="@+id/tvAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Cambio"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etNextOilChange"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvNextOilChange"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="date"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+
+
+</RelativeLayout>

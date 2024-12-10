@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35179919079",
+    "project_id": "biker-control-a242f",
+    "storage_bucket": "biker-control-a242f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35179919079:android:4ef5dd8157673f23281442",
+        "android_client_info": {
+          "package_name": "com.example.bikercontrol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGt6y3uK27f0Jn5rgJ6T7YTADCVhv2bNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
