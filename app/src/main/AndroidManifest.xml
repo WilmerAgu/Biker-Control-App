@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BikerControl"
         tools:targetApi="31">
         <activity
+            android:name=".OilChangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".OilActivity"
             android:exported="false" />
         <activity
