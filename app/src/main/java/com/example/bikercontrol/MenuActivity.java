@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MenuActivity extends AppCompatActivity {
-    private Button btnRegisterParts;
+    private Button btnRegisterParts, btnlistParts;
 
 
     @Override
@@ -27,11 +27,20 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnRegisterParts = findViewById(R.id.btnRegisterParts);
+        btnlistParts = findViewById(R.id.btnlistParts);
 
         btnRegisterParts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent( MenuActivity.this, RegisterPartsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnlistParts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, OilChangeActivity.class);
                 startActivity(intent);
             }
         });

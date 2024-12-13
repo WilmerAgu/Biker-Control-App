@@ -82,7 +82,7 @@ public class OilDao {
 
     //metodo para obtener todos los registros
 
-    public void getAllFacturas(OnSuccessListener<List<OilModel>> listener) {
+    public void getAllOilRegister(OnSuccessListener<List<OilModel>> listener) {
         db.collection(COLLECTION_NAME)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
