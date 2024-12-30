@@ -3,7 +3,7 @@ package com.example.bikercontrol;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,36 +11,26 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MenuActivity extends AppCompatActivity {
-    private Button btnRegisterParts, btnlistParts;
+public class ListRegisterActivity extends AppCompatActivity {
+    private ImageView ivListOil;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_list_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        ivListOil = findViewById(R.id.ivListOil);
 
-        btnRegisterParts = findViewById(R.id.btnRegisterParts);
-        btnlistParts = findViewById(R.id.btnlistParts);
-
-        btnRegisterParts.setOnClickListener(new View.OnClickListener() {
+        ivListOil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( MenuActivity.this, RegisterPartsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnlistParts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, ListRegisterActivity.class);
+                Intent intent = new Intent(ListRegisterActivity.this, OilChangeActivity.class);
                 startActivity(intent);
             }
         });
