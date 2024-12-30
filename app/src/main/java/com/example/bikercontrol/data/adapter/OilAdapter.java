@@ -50,6 +50,7 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.ViewHolder> {
         // Setear valores
         holder.oilChange.setText(dateFormat.format(oil.getOilChange()));
         holder.kilometer.setText(String.format(Locale.getDefault(), "%.2f km", oil.getKilometer()));
+        holder.nextChange.setText(dateFormat.format(oil.getOilChange()));
 
         // Manejo del clic
         holder.itemView.setOnClickListener(v -> {
@@ -68,11 +69,13 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.ViewHolder> {
 
         public TextView oilChange;
         public TextView kilometer;
+        public TextView nextChange;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             oilChange = itemView.findViewById(R.id.tvListOilChange);
             kilometer = itemView.findViewById(R.id.tvListKilometer);
+            nextChange = itemView.findViewById(R.id.tvNextChange);
         }
     }
 }
