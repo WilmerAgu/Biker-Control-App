@@ -15,6 +15,8 @@ import com.example.bikercontrol.data.adapter.OilAdapter;
 import com.example.bikercontrol.data.dao.OilDao;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Collections;
+
 public class OilChangeActivity extends AppCompatActivity {
     private RecyclerView rvOilChange;
     private OilAdapter oilAdapter;
@@ -50,6 +52,8 @@ public class OilChangeActivity extends AppCompatActivity {
     private void cargarRegistros() {
         oilDao.getAllOilRegister(oilRegistros -> {
             if (oilRegistros != null && !oilRegistros.isEmpty()) {
+                // Ordenar del más reciente al más antiguo
+                Collections.sort(oilRegistros, (o1, o2) -> o2.getOilChange().compareTo(o1.getOilChange()));
                 oilAdapter = new OilAdapter(oilRegistros);
                 rvOilChange.setAdapter((oilAdapter));
 
