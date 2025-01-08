@@ -50,7 +50,7 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.ViewHolder> {
         // Setear valores
         holder.oilChange.setText(dateFormat.format(oil.getOilChange()));
         holder.kilometer.setText(String.format(Locale.getDefault(), "%.2f km", oil.getKilometer()));
-        holder.nextChange.setText(dateFormat.format(oil.getOilChange()));
+        holder.nextChange.setText(dateFormat.format(oil.getNextOilChange()));
 
         // Manejo del clic
         holder.itemView.setOnClickListener(v -> {
