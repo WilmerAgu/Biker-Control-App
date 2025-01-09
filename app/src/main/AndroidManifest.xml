@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,9 +21,6 @@
             android:exported="false" />
         <activity
             android:name=".oil.ListRegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".oil.OilChangeActivity"
             android:exported="false" />
         <activity
             android:name=".oil.OilChangeActivity"
