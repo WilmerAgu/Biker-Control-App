@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BikerControl</string>
+    <string-array name="type_oil_array">
+        <item>Sintético</item>
+        <item>Semi-Sintético</item>
+        <item>Mineral</item>
+    </string-array>
 </resources>

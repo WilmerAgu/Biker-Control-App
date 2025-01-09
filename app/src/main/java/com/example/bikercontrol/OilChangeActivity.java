@@ -21,7 +21,6 @@ import java.util.Collections;
 public class OilChangeActivity extends AppCompatActivity {
     private RecyclerView rvOilChange;
     private OilAdapter oilAdapter;
-
     private OilDao oilDao;
 
     @Override
@@ -48,25 +47,25 @@ public class OilChangeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cargarRegistros(); // Refrescar la lista de registros al volver
+        cargarRegistros(); // Refrescar la lista al volver
     }
 
     private void cargarRegistros() {
         oilDao.getAllOilRegister(oilRegistros -> {
             if (oilRegistros != null && !oilRegistros.isEmpty()) {
-                // Ordenar del más reciente al más antiguo
                 Collections.sort(oilRegistros, (o1, o2) -> o2.getOilChange().compareTo(o1.getOilChange()));
                 oilAdapter = new OilAdapter(oilRegistros);
                 rvOilChange.setAdapter(oilAdapter);
 
                 oilAdapter.setOnItemClickListener(oilRegistro -> {
-                    Intent intent = new Intent(OilChangeActivity.this, EditOilRegisterActivity.class); // Corregido
+                    Intent intent = new Intent(OilChangeActivity.this, EditOilRegisterActivity.class);
+                    // Pasar todos los datos necesarios al EditOilRegisterActivity
                     intent.putExtra("id", oilRegistro.getId());
-                    intent.putExtra("oilChange", oilRegistro.getOilChange());
+                    intent.putExtra("oilChange", oilRegistro.getOilChange().getTime());
                     intent.putExtra("kilometer", oilRegistro.getKilometer());
                     intent.putExtra("oilBrand", oilRegistro.getOilBrand());
                     intent.putExtra("typeOil", oilRegistro.getTypeOil());
-                    intent.putExtra("nextOilChange", oilRegistro.getNextOilChange());
+                    intent.putExtra("nextOilChange", oilRegistro.getNextOilChange().getTime());
                     startActivity(intent);
                 });
             } else {

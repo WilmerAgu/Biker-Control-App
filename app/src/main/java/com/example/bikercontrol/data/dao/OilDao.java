@@ -38,26 +38,19 @@ public class OilDao {
     }
 
     //Metodo para actualizar un registro existente
-    public void update(String id, OilModel oil, OnSuccessListener<Boolean> listener) {
-        if (id == null || id.isEmpty()) {
-            Log.e(TAG, "ID de factura es nulo o vacío. No se puede actualizar.");
-            if (listener != null) listener.onSuccess(false);
+    public void update(OilModel oil, OnSuccessListener<Boolean> callback) {
+        if (oil == null || oil.getId() == null) {
+            callback.onSuccess(false);
             return;
         }
-        Map<String, Object> oilData = mapOilToData(oil);
 
-        db.collection(COLLECTION_NAME)
-                .document(id)
-                .update(oilData)
-                .addOnSuccessListener(unused -> {
-                    Log.d(TAG, "Registro actualizado correctamente: " + id);
-                    if (listener != null) listener.onSuccess(true);
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error al actualizar el registro: " + id, e);
-                    if (listener != null) listener.onSuccess(false);
-                });
+        db.collection("oilChanges")
+                .document(oil.getId())
+                .set(oil)
+                .addOnSuccessListener(aVoid -> callback.onSuccess(true))
+                .addOnFailureListener(e -> callback.onSuccess(false));
     }
+
 
     // metodo para obtener un registro por id
     public void getById(String id, OnSuccessListener<OilModel> listener) {
