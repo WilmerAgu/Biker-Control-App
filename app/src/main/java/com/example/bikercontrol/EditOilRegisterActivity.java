@@ -1,9 +1,12 @@
 package com.example.bikercontrol;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,16 +22,18 @@ import com.example.bikercontrol.data.model.OilModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class EditOilRegisterActivity extends AppCompatActivity {
     private EditText etOilChange, etKilometer, etOilBrand, etNextOilChange;
     private Spinner spTypeOil;
-    private Button btnDelete, btnUpdate;
+    private Button btnDelete;
 
     private OilDao oilDao;
     private String selectedRegisterId;
+    private Calendar oilChangeCalendar, nextOilChangeCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,7 @@ public class EditOilRegisterActivity extends AppCompatActivity {
         etNextOilChange = findViewById(R.id.etNextOilChange);
         spTypeOil = findViewById(R.id.spTypeOil);
         btnDelete = findViewById(R.id.btnDelete);
-        btnUpdate = findViewById(R.id.btnUpdate);
+
 
         // Inicializar DAO
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,8 +72,11 @@ public class EditOilRegisterActivity extends AppCompatActivity {
             cargarDatos(intent);
         }
 
-        // Botón para actualizar
-        btnUpdate.setOnClickListener(view -> actualizarRegistro());
+        // Configurar los DatePickers para editar las fechas
+        etOilChange.setOnClickListener(view -> mostrarDatePicker(true));
+        etNextOilChange.setOnClickListener(view -> mostrarDatePicker(false));
+
+
 
         // Botón para eliminar registro
         btnDelete.setOnClickListener(view -> eliminarRegistro());
@@ -87,10 +95,16 @@ public class EditOilRegisterActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
         // Establecer los datos en los campos
-        etOilChange.setText(dateFormat.format(new Date(intent.getLongExtra("oilChange", 0))));
-        etKilometer.setText(String.valueOf(intent.getDoubleExtra("kilometer", 0.0)));
+        oilChangeCalendar = Calendar.getInstance();
+        oilChangeCalendar.setTimeInMillis(intent.getLongExtra("oilChange", 0));
+        etOilChange.setText(dateFormat.format(oilChangeCalendar.getTime()));
+
+        nextOilChangeCalendar = Calendar.getInstance();
+        nextOilChangeCalendar.setTimeInMillis(intent.getLongExtra("nextOilChange", 0));
+        etNextOilChange.setText(dateFormat.format(nextOilChangeCalendar.getTime()));
+
+        etKilometer.setText(String.valueOf(intent.getDoubleExtra("kilometer", 0)));
         etOilBrand.setText(intent.getStringExtra("oilBrand"));
-        etNextOilChange.setText(dateFormat.format(new Date(intent.getLongExtra("nextOilChange", 0))));
 
         // Seleccionar el tipo de aceite en el Spinner
         String typeOil = intent.getStringExtra("typeOil");
@@ -98,43 +112,38 @@ public class EditOilRegisterActivity extends AppCompatActivity {
             ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spTypeOil.getAdapter();
             int position = adapter.getPosition(typeOil);
             spTypeOil.setSelection(position);
+            spTypeOil.setEnabled(false);
         }
     }
 
-    private void actualizarRegistro() {
-        if (selectedRegisterId == null || selectedRegisterId.isEmpty()) {
-            Toast.makeText(this, "ID del registro no válido", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    private void mostrarDatePicker(boolean isOilChange) {
+        // Usar el DatePickerDialog para seleccionar una fecha
+        Calendar calendar = isOilChange ? oilChangeCalendar : nextOilChangeCalendar;
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Crear un nuevo modelo con los datos del formulario
-        try {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, selectedYear, selectedMonth, selectedDay) -> {
+            Calendar selectedDate = Calendar.getInstance();
+            selectedDate.set(selectedYear, selectedMonth, selectedDay);
+
+            // Actualizar el EditText con la fecha seleccionada
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            Date oilChangeDate = dateFormat.parse(etOilChange.getText().toString());
-            Date nextOilChangeDate = dateFormat.parse(etNextOilChange.getText().toString());
+            String formattedDate = dateFormat.format(selectedDate.getTime());
 
-            OilModel updatedOil = new OilModel(
-                    selectedRegisterId,
-                    oilChangeDate,
-                    Double.parseDouble(etKilometer.getText().toString()),
-                    etOilBrand.getText().toString(),
-                    spTypeOil.getSelectedItem().toString(),
-                    nextOilChangeDate
-            );
+            if (isOilChange) {
+                etOilChange.setText(formattedDate);
+                oilChangeCalendar = selectedDate;
+            } else {
+                etNextOilChange.setText(formattedDate);
+                nextOilChangeCalendar = selectedDate;
+            }
 
-            // Actualizar el registro en la base de datos
-            oilDao.update(updatedOil, isSuccess -> {
-                if (isSuccess) {
-                    Toast.makeText(this, "Registro actualizado correctamente", Toast.LENGTH_SHORT).show();
-                    finish(); // Finalizar actividad si la actualización es exitosa
-                } else {
-                    Toast.makeText(this, "Error al actualizar el registro", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (Exception e) {
-            Toast.makeText(this, "Error en los datos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        }, year, month, day);
+
+        datePickerDialog.show();
     }
+
 
     private void eliminarRegistro() {
         oilDao.delete(selectedRegisterId, isSuccess -> {
@@ -146,4 +155,5 @@ public class EditOilRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 }

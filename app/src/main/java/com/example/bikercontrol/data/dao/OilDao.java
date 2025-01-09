@@ -3,6 +3,7 @@ package com.example.bikercontrol.data.dao;
 import android.util.Log;
 
 import com.example.bikercontrol.data.model.OilModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,20 +36,6 @@ public class OilDao {
                     Log.e(TAG, "Error al insertar el registro", e);
                     listener.onSuccess(null);
                 });
-    }
-
-    //Metodo para actualizar un registro existente
-    public void update(OilModel oil, OnSuccessListener<Boolean> callback) {
-        if (oil == null || oil.getId() == null) {
-            callback.onSuccess(false);
-            return;
-        }
-
-        db.collection("oilChanges")
-                .document(oil.getId())
-                .set(oil)
-                .addOnSuccessListener(aVoid -> callback.onSuccess(true))
-                .addOnFailureListener(e -> callback.onSuccess(false));
     }
 
 
