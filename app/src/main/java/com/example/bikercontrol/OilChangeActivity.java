@@ -2,6 +2,7 @@ package com.example.bikercontrol;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,14 +21,15 @@ import java.util.Collections;
 public class OilChangeActivity extends AppCompatActivity {
     private RecyclerView rvOilChange;
     private OilAdapter oilAdapter;
-    private OilDao oilDao;
 
+    private OilDao oilDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_oil_change);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -46,7 +48,7 @@ public class OilChangeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cargarRegistros(); // Refrescar la lista de facturas al volver
+        cargarRegistros(); // Refrescar la lista de registros al volver
     }
 
     private void cargarRegistros() {
@@ -55,10 +57,10 @@ public class OilChangeActivity extends AppCompatActivity {
                 // Ordenar del más reciente al más antiguo
                 Collections.sort(oilRegistros, (o1, o2) -> o2.getOilChange().compareTo(o1.getOilChange()));
                 oilAdapter = new OilAdapter(oilRegistros);
-                rvOilChange.setAdapter((oilAdapter));
+                rvOilChange.setAdapter(oilAdapter);
 
                 oilAdapter.setOnItemClickListener(oilRegistro -> {
-                    Intent intent = new Intent(OilChangeActivity.this, OilChangeActivity.class);
+                    Intent intent = new Intent(OilChangeActivity.this, EditOilRegisterActivity.class); // Corregido
                     intent.putExtra("id", oilRegistro.getId());
                     intent.putExtra("oilChange", oilRegistro.getOilChange());
                     intent.putExtra("kilometer", oilRegistro.getKilometer());
@@ -66,8 +68,9 @@ public class OilChangeActivity extends AppCompatActivity {
                     intent.putExtra("typeOil", oilRegistro.getTypeOil());
                     intent.putExtra("nextOilChange", oilRegistro.getNextOilChange());
                     startActivity(intent);
-
                 });
+            } else {
+                Toast.makeText(this, "No hay registros disponibles", Toast.LENGTH_SHORT).show();
             }
         });
     }

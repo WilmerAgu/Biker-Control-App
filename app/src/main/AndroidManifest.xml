@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BikerControl"
         tools:targetApi="31">
         <activity
+            android:name=".EditOilRegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListRegisterActivity"
             android:exported="false" />
         <activity
