@@ -13,22 +13,22 @@
         android:theme="@style/Theme.BikerControl"
         tools:targetApi="31">
         <activity
-            android:name=".EditOilRegisterActivity"
+            android:name=".data.oil.EditOilRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ListRegisterActivity"
+            android:name=".data.oil.ListRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".OilChangeActivity"
+            android:name=".data.oil.OilChangeActivity"
             android:exported="false" />
         <activity
-            android:name=".OilChangeActivity"
+            android:name=".data.oil.OilChangeActivity"
             android:exported="false" />
         <activity
-            android:name=".OilActivity"
+            android:name=".data.oil.OilActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterPartsActivity"
+            android:name=".data.oil.RegisterPartsActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"

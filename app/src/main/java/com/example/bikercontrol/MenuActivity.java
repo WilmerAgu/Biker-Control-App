@@ -11,6 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bikercontrol.data.oil.ListRegisterActivity;
+import com.example.bikercontrol.data.oil.RegisterPartsActivity;
+
 public class MenuActivity extends AppCompatActivity {
     private Button btnRegisterParts, btnlistParts;
 

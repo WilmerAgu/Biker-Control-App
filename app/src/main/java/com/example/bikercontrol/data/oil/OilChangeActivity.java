@@ -1,4 +1,4 @@
-package com.example.bikercontrol;
+package com.example.bikercontrol.data.oil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bikercontrol.R;
 import com.example.bikercontrol.data.adapter.OilAdapter;
 import com.example.bikercontrol.data.dao.OilDao;
 import com.google.firebase.firestore.FirebaseFirestore;

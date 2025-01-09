@@ -1,4 +1,4 @@
-package com.example.bikercontrol;
+package com.example.bikercontrol.data.oil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,30 +11,30 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class RegisterPartsActivity extends AppCompatActivity {
+import com.example.bikercontrol.R;
 
-    private ImageView ivAceite;
+public class ListRegisterActivity extends AppCompatActivity {
+    private ImageView ivListOil;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register_parts);
+        setContentView(R.layout.activity_list_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        ivListOil = findViewById(R.id.ivListOil);
 
-        ivAceite = findViewById(R.id.ivAceite);
-
-        ivAceite.setOnClickListener(new View.OnClickListener() {
+        ivListOil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterPartsActivity.this, OilActivity.class);
+                Intent intent = new Intent(ListRegisterActivity.this, OilChangeActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 }

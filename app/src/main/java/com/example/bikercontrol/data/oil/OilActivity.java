@@ -1,4 +1,4 @@
-package com.example.bikercontrol;
+package com.example.bikercontrol.data.oil;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bikercontrol.R;
 import com.example.bikercontrol.data.dao.OilDao;
 import com.example.bikercontrol.data.model.OilModel;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,10 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class OilActivity extends AppCompatActivity {
