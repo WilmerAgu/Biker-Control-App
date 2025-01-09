@@ -1,4 +1,4 @@
-package com.example.bikercontrol.data.oil;
+package com.example.bikercontrol.oil;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -38,6 +38,25 @@ public class OilDao {
                 });
     }
 
+    // Método para actualizar un registro existente
+    public void update(OilModel updatedOil, OnResultListener listener) {
+        db.collection(COLLECTION_NAME)
+                .document(updatedOil.getId())
+                .set(updatedOil)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        listener.onResult(true); // Indica éxito
+                    } else {
+                        listener.onResult(false); // Indica error
+                    }
+                });
+    }
+    public interface OnResultListener {
+        void onResult(boolean isSuccess);
+    }
+
+
+
 
     // metodo para obtener un registro por id
     public void getById(String id, OnSuccessListener<OilModel> listener) {

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_degradado"
-    tools:context=".data.oil.OilActivity">
+    tools:context=".oil.OilActivity">
 
     <!-- Logo -->
     <ImageView
@@ -24,7 +24,7 @@
         android:id="@+id/tvOil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registro Cambio de Aceite"
+        android:text="Cambio de Aceite"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -51,16 +51,14 @@
             android:text="Fecha de Cambio"
             android:textColor="@color/white"
             android:textStyle="bold" />
-
         <EditText
             android:id="@+id/etOilChange"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_background"
-            android:clickable="true"
             android:focusable="false"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:enabled="false" />
+            android:clickable="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,8 +74,7 @@
             android:layout_height="40dp"
             android:background="@drawable/edittext_background"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-            android:enabled="false" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,10 +87,9 @@
         <EditText
             android:id="@+id/etOilBrand"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_background"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:enabled="false" />
+            tools:ignore="SpeakableTextPresentCheck" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,14 +97,12 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
-
         <Spinner
             android:id="@+id/spTypeOil"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_background"
-            tools:ignore="TouchTargetSizeCheck"
-             />
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,35 +111,45 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
-
         <EditText
             android:id="@+id/etNextOilChange"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_background"
-            android:clickable="true"
             android:focusable="false"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:enabled="false" />
+            android:clickable="true"
+            />
 
     </LinearLayout>
 
     <!-- Botón o acción al final -->
 
     <Button
-
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         android:text="Eliminar"
         android:textColor="@color/red"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.26"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Actualizar"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 </androidx.constraintlayout.widget.ConstraintLayout>

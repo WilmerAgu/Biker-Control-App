@@ -1,8 +1,9 @@
-package com.example.bikercontrol.data.oil;
+package com.example.bikercontrol.oil;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,16 +18,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.bikercontrol.R;
 import com.example.bikercontrol.data.dao.OilDao;
+import com.example.bikercontrol.data.model.OilModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class EditOilRegisterActivity extends AppCompatActivity {
     private EditText etOilChange, etKilometer, etOilBrand, etNextOilChange;
     private Spinner spTypeOil;
-    private Button btnDelete;
+    private Button btnDelete, btnUpdate;
 
     private OilDao oilDao;
     private String selectedRegisterId;
@@ -51,7 +54,7 @@ public class EditOilRegisterActivity extends AppCompatActivity {
         etNextOilChange = findViewById(R.id.etNextOilChange);
         spTypeOil = findViewById(R.id.spTypeOil);
         btnDelete = findViewById(R.id.btnDelete);
-
+        btnUpdate = findViewById(R.id.btnUpdate);
 
         // Inicializar DAO
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -73,7 +76,8 @@ public class EditOilRegisterActivity extends AppCompatActivity {
         etOilChange.setOnClickListener(view -> mostrarDatePicker(true));
         etNextOilChange.setOnClickListener(view -> mostrarDatePicker(false));
 
-
+        // Botón para actualizar
+        btnUpdate.setOnClickListener(view -> actualizarRegistro());
 
         // Botón para eliminar registro
         btnDelete.setOnClickListener(view -> eliminarRegistro());
@@ -109,7 +113,6 @@ public class EditOilRegisterActivity extends AppCompatActivity {
             ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spTypeOil.getAdapter();
             int position = adapter.getPosition(typeOil);
             spTypeOil.setSelection(position);
-            spTypeOil.setEnabled(false);
         }
     }
 
@@ -139,6 +142,46 @@ public class EditOilRegisterActivity extends AppCompatActivity {
         }, year, month, day);
 
         datePickerDialog.show();
+    }
+
+    private void actualizarRegistro() {
+        if (selectedRegisterId == null || selectedRegisterId.isEmpty()) {
+            Toast.makeText(this, "ID del registro no válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Crear un nuevo modelo con los datos del formulario
+        try {
+            // Obtener las fechas desde los campos de texto
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+            Date oilChangeDate = dateFormat.parse(etOilChange.getText().toString());
+            Date nextOilChangeDate = dateFormat.parse(etNextOilChange.getText().toString());
+
+            // Crear el objeto OilModel
+            OilModel updatedOil = new OilModel(
+                    selectedRegisterId,
+                    oilChangeDate,
+                    Double.parseDouble(etKilometer.getText().toString()),
+                    etOilBrand.getText().toString(),
+                    spTypeOil.getSelectedItem().toString(),
+                    nextOilChangeDate
+            );
+
+            // Verificar que los datos se estén asignando correctamente
+            Log.d("EditOilRegister", "Updated Oil: " + updatedOil);
+
+            oilDao.update(updatedOil, isSuccess -> {
+                if (isSuccess) {
+                    Toast.makeText(this, "Registro actualizado correctamente", Toast.LENGTH_SHORT).show();
+                    finish(); // Finaliza la actividad si la actualización fue exitosa
+                } else {
+                    Toast.makeText(this, "Error al actualizar el registro", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "Error en los datos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
